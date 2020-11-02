@@ -1,0 +1,11 @@
+.produit {
+    max-width: 65%;
+    max-height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h5 {
+    color: rgb(159, 41, 255);
+    text-decoration: underline;
+}

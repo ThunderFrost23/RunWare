@@ -1,0 +1,13 @@
+body {
+    background-image: url("../photos/arpl.jpg");
+    background-attachment: fixed;
+}
+
+.center {
+    color: rgb(159, 41, 255);
+}
+
+.pub {
+    width: 100%;
+    height: auto;
+}

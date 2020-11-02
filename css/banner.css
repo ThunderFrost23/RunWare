@@ -1,0 +1,19 @@
+.banner {
+    overflow: hidden!important;
+    height: 250px!important;
+}
+
+.logo {
+    position: absolute;
+}
+
+.button {
+    background-color: rgb(159, 41, 255);
+    text-align: center;
+}
+
+
+.contenu-right {
+    margin-left: auto;
+    display: flex;
+}

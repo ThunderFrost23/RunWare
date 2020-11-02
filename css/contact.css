@@ -1,0 +1,71 @@
+h5 {
+    color: rgb(159, 41, 255);
+    text-decoration: underline;
+}
+
+form {
+    /* Uniquement centrer le formulaire sur la page */
+    margin: 0 auto;
+    width: 1000px;
+    /* Encadré pour voir les limites du formulaire */
+    padding: 1em;
+    border: 2px solid rgb(159, 41, 255);
+    border-radius: 1em;
+  }
+
+/* Le contact*/
+.contact-form-text {
+    margin:10px;
+    padding: 10px;
+}
+
+    /* le Contact */
+.contact-section h1{
+    text-align:center;
+    color:rgb(159, 41, 255);
+}
+
+    /* l'ensenble contact */
+.contact-form{
+    max-width: 500px;
+    margin: auto;
+    padding:  10px;
+    overflow: hidden;
+}
+    /* le texte*/
+.contact-form-text{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 16px 0;
+    background: white;
+    padding: 20px 40;
+    outline:none ;
+    color: rgb(0, 0, 0);
+    
+}
+    /* affichage arrière clique*/
+.contact-form-text:focus{
+    box-shadow: 5px 4px rgb(143, 143, 143);
+}
+
+    /* roulante cote message*/
+textarea.contact-form-text{
+    resize: none;
+    height: 120px;
+}
+    /* le fond de envoie*/
+.contact-form-btn{
+    float: right;
+    border:0;
+    background: rgb(159, 41, 255);
+    ;
+    color: #fff;
+    padding:12px 15px ;
+    border-radius: 20px;
+}
+    /* le devant de envoie couleur*/
+.contact-form-btn:hover{
+    background: rgb(185, 100, 255);
+    ;
+}
