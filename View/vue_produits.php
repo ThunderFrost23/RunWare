@@ -29,7 +29,7 @@
                 echo "<div class='card'";
                   echo "<div><img class='produit' src=".$row->imgProd.'></div>';
                 echo "<div class='card-body'>";
-                  echo "<h5 class='card-title'><small><a href='vue_pageProduit.php?id=1'>".$row->nomProd."</a></small></h5>";
+                  echo "<h5 class='card-title'><small><a href='vue_pageProduit.php?id=".$row->idProd."'>".$row->nomProd."</a></small></h5>";
                   echo "<p class='card-text'><strong class='text-danger'>".$row->prixProd." €"."</strong></p><br><br>";
                 echo "</div>";
               echo "</div>";
@@ -48,4 +48,6 @@
       
 
   </body>
+  
+  <br><?php include "footer.php" ?>
 </html>

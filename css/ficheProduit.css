@@ -1,0 +1,19 @@
+.titleProd {
+    font-size: 50px;
+    color: rgb(159, 41, 255);
+}
+
+.prix {
+    font-size: 35px;
+    color: rgb(90, 0, 163);
+}
+
+.panier {
+    text-align: center;
+}
+
+#button {
+    background-color: rgb(90, 0, 163);
+    border-color: black;
+
+}

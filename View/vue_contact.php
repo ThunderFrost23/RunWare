@@ -45,4 +45,5 @@
 ?>
      
    </body>
+   <br><?php include "footer.php" ?>
 </html> 

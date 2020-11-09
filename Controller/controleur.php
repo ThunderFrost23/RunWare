@@ -11,5 +11,6 @@ class produits extends DB {
         $requete = $strSQL->fetchAll(PDO::FETCH_ASSOC);
         return $requete;
     }*/
+  
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 26 oct. 2020 à 14:59
+-- Généré le : lun. 09 nov. 2020 à 12:25
 -- Version du serveur :  8.0.21
 -- Version de PHP : 7.4.9
 
@@ -61,10 +61,25 @@ INSERT INTO `categorie` (`idCat`, `nomCateg`) VALUES
 DROP TABLE IF EXISTS `commande`;
 CREATE TABLE IF NOT EXISTS `commande` (
   `idCommnd` int NOT NULL AUTO_INCREMENT,
-  `idProd` int NOT NULL,
   `dateCommnd` date NOT NULL,
-  PRIMARY KEY (`idCommnd`),
-  KEY `idProd` (`idProd`)
+  `idUtil` int NOT NULL,
+  KEY `idUtil` (`idUtil`),
+  KEY `idCommnd` (`idCommnd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commande_produits`
+--
+
+DROP TABLE IF EXISTS `commande_produits`;
+CREATE TABLE IF NOT EXISTS `commande_produits` (
+  `idProd` int NOT NULL,
+  `idCommnd` int NOT NULL,
+  `qte` int NOT NULL,
+  PRIMARY KEY (`idProd`,`idCommnd`),
+  KEY `idCommnd` (`idCommnd`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -96,8 +111,8 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `prixProd` float NOT NULL,
   `descProd` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `imgProd` varchar(50) NOT NULL,
-  PRIMARY KEY (`idProd`),
-  KEY `idCat` (`idCat`)
+  KEY `idCat` (`idCat`),
+  KEY `idProd` (`idProd`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
@@ -135,9 +150,7 @@ INSERT INTO `produit` (`idProd`, `idCat`, `nomProd`, `prixProd`, `descProd`, `im
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `idUtil` int NOT NULL AUTO_INCREMENT,
-  `idCommnd` int NOT NULL,
   `civiliteUtil` char(1) NOT NULL,
-  `pseudUtil` varchar(30) NOT NULL,
   `mdpUtil` varchar(30) NOT NULL,
   `nomUtil` varchar(25) NOT NULL,
   `pnomUtil` varchar(25) NOT NULL,
@@ -146,9 +159,15 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `numUtil` int NOT NULL,
   `addrFactUtil` varchar(30) NOT NULL,
   `addrLivrUtil` varchar(30) NOT NULL,
-  PRIMARY KEY (`idUtil`),
-  KEY `idCommnd` (`idCommnd`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idUtil`)
+) ;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`idUtil`, `civiliteUtil`, `mdpUtil`, `nomUtil`, `pnomUtil`, `naissUtil`, `mailUtil`, `numUtil`, `addrFactUtil`, `addrLivrUtil`) VALUES
+(6, 'H', 'admin', 'Lauret', 'Ryan', '1995-12-03', 'tseur974@gmail.com', 692234567, '28 rue Oui', '28 rue Oui');
 
 --
 -- Contraintes pour les tables déchargées
@@ -158,7 +177,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`idProd`) REFERENCES `produit` (`idProd`);
+  ADD CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`idUtil`) REFERENCES `utilisateur` (`idUtil`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Contraintes pour la table `commande_produits`
+--
+ALTER TABLE `commande_produits`
+  ADD CONSTRAINT `commande_produits_ibfk_1` FOREIGN KEY (`idProd`) REFERENCES `produit` (`idProd`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `commande_produits_ibfk_2` FOREIGN KEY (`idCommnd`) REFERENCES `commande` (`idCommnd`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `contact`
@@ -171,12 +197,6 @@ ALTER TABLE `contact`
 --
 ALTER TABLE `produit`
   ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`idCat`) REFERENCES `categorie` (`idCat`);
-
---
--- Contraintes pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`idCommnd`) REFERENCES `commande` (`idCommnd`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -11,3 +11,18 @@ body {
     width: 100%;
     height: auto;
 }
+
+/* cadrillage du tableau */
+tr, td{
+    width: 10em;
+    border: 1px solid black;
+    position: relative;
+}
+/* positionnement */
+table{
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+    height: auto;
+
+}

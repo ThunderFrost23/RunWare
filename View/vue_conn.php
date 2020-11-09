@@ -25,13 +25,13 @@
     </style>
     </head>
     <body class="text-center">
-        <form class="form-signin">
+        <form class="form-signin" action="identification.php" method="POST">
             <img class="mb-4" src="../photos/login.png" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter!</h1>
             <label for="inputEmail" class="sr-only">Adresse mail</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
+            <input name="mailUtil" type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required autofocus>
             <label for="inputPassword" class="sr-only">Mot de passe</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+            <input name="mdpUtil" type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
             <p class="mt-5 mb-3 text-muted">Vous n'êtes pas inscrit ? <a href="vue_inscrip.php">Cliquez ici</a> pour vous inscrire</p>
         </form>

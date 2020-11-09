@@ -1,12 +1,21 @@
+<?php
+    session_start(); 
+    require_once('../Controller/controleur.php');
+        
+    $database = new DB();
+    if(isset($_SESSION['idUtil'])) {
+        $utilOnline = $database->getClient($_SESSION['idUtil']);
+    }
+    ?>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/banner.css">
         <script src="../js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        <script src="../js/jquery-3.5.1.slim.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
     </head>
 
     <header>
@@ -34,7 +43,12 @@
                     </ul>
                     
                     <ul class="navbar-nav" style='margin-left:auto;'>
+                    <?php if(!isset($_SESSION['idUtil'])) { ?>
                         <li class="nav-item btn"><a href="vue_conn.php" class="nav-link">Connexion</a></li>
+                    <?php } else { ?>
+                        <li class="nav-item btn"><a class="nav-link" ><?php echo $utilOnline->nomUtil." ".$utilOnline->pnomUtil ?></a></li>
+                        <li class="nav-item btn"><a href="deconnexion.php" class="nav-link">Déconnexion</a></li>
+                    <?php } ?>
                         <li class="nav-item btn btn-secondary button"><a href="vue_panier.php" class="nav-link">Panier</a></li>
                     </ul>
                 </div>
